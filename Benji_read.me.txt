@@ -1,0 +1,44 @@
+horizon: la première année sous le seuil de prédictabilité (quand c'est 1 ca veut dire qu'on a mal prédi des le premier step, quand c'est 10 on a prédi sur toute la période qu'on regarde. 
+
+ToE: l'année à laquelle la distribution sort de la variabilité naturelle (time of emergence)
+
+long_persist: t'occupes en pas. 
+
+long: première année ou on trouve de la prédictabilité après le time of emergence ou après 30 ans si pas de toe mais t'occupes en pas non plus.
+
+time: c'est toujours 1 c'est du a la façon dont j'agrège les données dans R on s'en tape. 
+
+noise: le niveau de bruit donc de variabilité autour de la moyenne dans ta time series environnementale. y a 6 valeurs croissantes de bruit. 
+
+signal: le niveau de forcing donc la pente que tu ajoutes à partir d'un certain temps dans ta time series environment pour simuler genre le changement climatique. De mémoire il doit y avoir 5 niveaux de signal. 
+
+species: 4 niveaux en gros ça correspond à des cycles de vie: très court, court, long, très long. 
+
+vr: c'est ton vital rate donc en gros c'est l'aspect de ton cycle de vie qui va être affecté par l'environnement. Dans mes modèles il y a toujours un seul vital rate qui dépend de l'environnement à la fois. C'est pas réaliste puisqu'évidemment dans la vrai vie ils sont surement tous affectés mais ça permet de voir les effets relatifs sur chaque trait. Tu as donc 4 niveaux qui correspondent dans l'ordre à: fertilité, survie juvénile, survie adulte et maturation rate (le rate auquel tu passe du stage juvénile au stade adulte) et c'est avec ces quatre variables que je reconstruit ma matrice de population de laquelle j'extrais le taux de croissance de ma pop à chaque année. 
+
+sensi: c'est la sensibilité de ta pop (donc du vital rate puisque c'est un seul à la fois dans notre cas) à l'environnement. Ca peut prendre 3 valeurs: une positive donc la population kiffe le changement, une négative et une négative forte.
+
+is.mean.uncer: c'est la façon dont je calcule la relation entre environnement et pop mais en gros ça va beaucoup changer donc je serais toi je garderais juste les is.mean.uncer = 1 et je virerais carrément le reste. 
+
+###Ici c'est des variables de bruit donc ce que t'as toi en colonne c'est des niveaux de bruit mais moi ce que j'ai fait c'est que pour chaque niveau d'incertitude je crée 100 valeurs qui vont être pioché aléatoirement dans [variable-bruit, variable+bruit] par exemple si j'ai une sensi de -0.05 et une observation error de 0.01 je vais chopper 100 fois une valeur dans [-0.05-0.01, -0.05+0.01] et ca deviendra mes 100 valeurs de sensi pour mes 100 simulations à partir desquelles je calcule l'ACC tout ca. J'espère que je suis clair omg. 
+
+is.initial.uncer: c'est le niveau d'incertitude initiale. La façon dont j'ajoute l'incertitude initiale c'est qu'en fait de base pour calculer mon taux de croissance je dois multiplier ma matrice de pop par la distribution d'age dans ma pop, c'est à dire la proportion adulte/juvénile. De base je connais mes valeurs stables c'est à dire les valeurs pour lequel mon taux de croissance sera de 1. Pour rajouter l'incertitude initiale j'ajoute juste plus ou moins de bruit autour de ces valeurs stables à l'année 1 (ce que représente cette variable). Après la distribution d'age va se stabiliser d'elle même au bout de quelques années dans le modèle. 
+
+is.process.error: le niveau de bruit blanc dans mon calcul de taux de croissance. C'est vraiment du bête bruit.
+
+is.observation.error: c'est mon erreur d'observation en gros je pars du principe qu'on mesure pas parfaitement la variable "sensi" et j'ajoute plus ou moins de bruit autour. L'effet principal que ça va avoir c'est que ça va augmenter l'incertitude autour de la pente.
+
+####
+
+is.smooth: c'est 0 = j'utilise mes time series brute et 1 = j'utilise des valeurs smoothées avec une moyenne mouvante (je sais pas comment ca s'appelle mdr) sur 10 ans mais pas centré, je prends les 10 ans avant (ou moins pour les années avant 10 ans).
+
+is.horizon: c'est juste est-ce que t'as reussi à prédire un peu le short term. Clairement c'est juste est-ce que ta variable horizon elle est supérieur à 1 oui/non
+
+is.long: pareil mais pour la variable long.
+
+is.long_p: balec
+
+is.ToE: est-ce que tu détectes un time of emergence ou pas. En gros est-ce que ton ToE est NaN ou pas.
+
+
+https://docs.google.com/document/d/1NIOYl-3T_1txpiFsQyScY91T4wSrbg83/edit?usp=sharing&ouid=116223829355661606095&rtpof=true&sd=true

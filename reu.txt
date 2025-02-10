@@ -1,0 +1,21 @@
+garder noise et signal (variables climat)
+noise : bruit de la variable climatique
+signal = pente de la variable climatique
+sensi = à quel pt l'espèce est sensible à l'environnement (climat)
+
+ça serait cool de garder les variables de bruit, important
+
+2 envi : signal, noise
+3 bruits : bruit blanc, obs error, erreur initiale
+3 bio : espèce, taux vital, sensi
+
+est-ce que le ToE est affecté par le fait qu'on ait de la short term avant ?
+horizon > 1, donc on prédit sur plus d'un 1 an
+
+
+
+2 QUESTIONS :
+qu'est-ce qui explique qu'on a de la short term (ou ToE) ? le fait qu'on ait espèce longévive ? + de bruit climatique ?
+est-ce qu'avoir de la short term influe la chance d'avoir du long terme ? (ToE et ce qu'il se passe après)
+
+ça peut être cool de faire un arbre de décision pour avoir un genre de "protocole" selon les cas de figures pour trouver de la prédictabilité ou pas

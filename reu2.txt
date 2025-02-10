@@ -1,0 +1,10 @@
+regression : 
+prendre les données qui ont horizon > 1 et faire un arbre régression sur horizon
+
+5 arbres :
+
+forecast horizon en continu (que là où horizon > 1)
+ToE en binaire
+ToE en continu (seulement quand ToE =/= NaN)
+long_persist en binaire
+ToE en continu (seulement quand long_persist =/= NaN)
